@@ -1,4 +1,4 @@
-module github.com/i4erkasov/otus_hw/hw02_unpack_string
+module github.com/i4erkasov/otus_hw/hw02_unpack_string_1
 
 go 1.17
 
