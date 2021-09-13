@@ -9,6 +9,7 @@ import (
 )
 
 const BackSlash = 92 // '\'
+
 const RegexpPattern = `^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`
 
 var (
