@@ -8,6 +8,7 @@ import (
 	"unicode"
 )
 
+var pattern = regexp.MustCompile(`^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`)
 var ErrInvalidString = errors.New("invalid string")
 
 const BACKSLASH = 92 // '\'
@@ -80,8 +81,7 @@ func parse(str string) []slice {
 }
 
 func validate(str string) bool {
-	re := regexp.MustCompile(`^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`)
-	result := re.FindAllString(str, -1)
+	result := pattern.FindAllString(str, -1)
 
 	return len(result) == 0
 }
