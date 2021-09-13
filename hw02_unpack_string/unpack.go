@@ -8,8 +8,11 @@ import (
 	"unicode"
 )
 
-var pattern = regexp.MustCompile(`^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`)
-var ErrInvalidString = errors.New("invalid string")
+var (
+	ErrInvalidString = errors.New("invalid string")
+
+	pattern = regexp.MustCompile(`^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`)
+)
 
 const BACKSLASH = 92 // '\'
 
