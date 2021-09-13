@@ -8,13 +8,14 @@ import (
 	"unicode"
 )
 
+const BackSlash = 92 // '\'
+const RegexpPattern = `^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`
+
 var (
 	ErrInvalidString = errors.New("invalid string")
 
-	pattern = regexp.MustCompile(`^\d|(\\[a-z]|\\[A-Z])|(\\\d{3,}|([a-z]|[A-Z])\d{2,})`)
+	pattern = regexp.MustCompile(RegexpPattern)
 )
-
-const BACKSLASH = 92 // '\'
 
 type slice struct {
 	value  rune
@@ -49,14 +50,14 @@ func parse(str string) []slice {
 		val := runes[i]
 		repeat := 1
 
-		if runes[i] != BACKSLASH {
+		if runes[i] != BackSlash {
 			if unicode.IsDigit(runes[i+1]) {
 				repeat, _ = strconv.Atoi(string(runes[i+1]))
 				i++
 			}
 		}
 
-		if runes[i] == BACKSLASH {
+		if runes[i] == BackSlash {
 			val = runes[i+1]
 			repeat = 1
 			i++
